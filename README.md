@@ -1,6 +1,6 @@
 Node.JS_and_Dockerfile:->
 
-I have Written node.js for hello world and created a docker file for it to crate, pull and puch image.
+I have Written node.js for hello world and created a docker file for it to crate, pull and push image.
 Commands to do that:
 npm init   #To initialize node file
 node hello-world.js #to view our node site is running or not
