@@ -1,12 +1,12 @@
 Node.JS_and_Dockerfile:->
 
-I have Written node.js for hello world and created a docker file for it to crate, pull and push image.
+I have Written node.js for hello world and created a docker file for it to create, pull and push image.
 Commands to do that:
 npm init   #To initialize node file
 node hello-world.js #to view our node site is running or not
 docker build -t hello-world-app    #To build docker images
 docker tag hello-world-app:latest <account-id>.dkr.ecr.<region>.amazonaws.com/hello-world-app:latest   # this is my command with some private id's. 
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com   #This is to connect yor Elastic container registery in aws and connect with docker so we can add our generated docker images into aws ecr.
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com   #This is to connect your Elastic container registery in aws and connect with docker so we can add our generated docker images into aws ecr.
  docker push <account-id>.dkr.ecr.<region>.amazonaws.com/hello-world-app:latest  # This is to push our generated images into aws ecr.
 
 
