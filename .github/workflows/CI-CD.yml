@@ -1,19 +1,15 @@
 name: CI/CD Pipeline
 
-on: workflow_dispatch
+on:
+  push:
+    branches: [ master ]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3  # Checkout code from repository
-    
-    - name: Update ECS Service (Example)
-      uses: aws-actions/aws-cli@v2
-      with:
-        aws-region: us-east-1  # Replace with your AWS region
-        commands: |
-          aws ecs update-service --cluster hello-world-cluster --service hello-world-app-service --force-new-deployment
 
     - name: Login to AWS ECR
       uses: aws-actions/amazon-ecr-login@v2  # Automatically log in to ECR
@@ -22,5 +18,11 @@ jobs:
       run: |
         docker build -t 872966921168.dkr.ecr.us-east-1.amazonaws.com/hello-world-app-repo:latest .
         docker push 872966921168.dkr.ecr.us-east-1.amazonaws.com/hello-world-app-repo:latest
-
-   
+        
+  
+    - name: Update ECS Service
+      uses: aws-actions/aws-cli@v2
+      with:
+        aws-region: us-east-1  # Replace with your AWS region
+        commands: |
+          aws ecs update-service --cluster hello-world-cluster --service hello-world-app-service --force-new-deployment
